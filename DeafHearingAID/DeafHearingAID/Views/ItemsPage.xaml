@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DeafHearingAID.Views.ItemsPage"
+             Title="{Binding Title}"
+             xmlns:local="clr-namespace:DeafHearingAID.ViewModels"  
+             xmlns:model="clr-namespace:DeafHearingAID.Models"  
+             x:Name="BrowseItemsPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem  Text="Select Date and Pull to Refresh to see specific Date's Record"  />
+    </ContentPage.ToolbarItems>
+
+    
+    <!--
+      x:DataType enables compiled bindings for better performance and compile time validation of binding expressions.
+      https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/data-binding/compiled-bindings
+    -->
+
+    <StackLayout Orientation="Vertical" >
+        <Label Text="Select Date" HorizontalOptions="CenterAndExpand"  ></Label>
+        <DatePicker x:DataType="local:ItemsViewModel"  HorizontalOptions="CenterAndExpand"   Date="{Binding DT}">
+            
+        </DatePicker>
+
+        <RefreshView x:DataType="local:ItemsViewModel" Command="{Binding GetCustomDateHistoryCommand}" IsRefreshing="{Binding IsBusy}">
+
+            <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Items}"
+                SelectionMode="None">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <StackLayout Padding="10" x:DataType="model:AIDItem">
+
+                            <Label Text="{Binding AudioText}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="13" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding SavedTime}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemDetailTextStyle}" 
+                            FontSize="11" />
+                                <Label Text="{Binding Language}" 
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemTextStyle}"
+                            FontSize="12" />
+
+                            </StackLayout>
+
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type local:ItemsViewModel}}, Path=ItemTapped}"		
+                                CommandParameter="{Binding .}">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
+    </StackLayout>
+    
+  
+</ContentPage>

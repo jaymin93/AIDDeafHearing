@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DeafHearingAID.Views.AboutPage"
+             xmlns:vm="clr-namespace:DeafHearingAID.ViewModels"
+             Title="{Binding Title}" >
+    
+    <ContentPage.BindingContext>
+        <vm:AIDViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="Accent">#96d1ff</Color>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout BackgroundColor="{StaticResource Accent}" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <StackLayout Orientation="Horizontal" Padding="10" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                <ContentView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+                    <Picker x:Name="pickerlang" SelectedItem="{Binding CurrentLang}" VerticalOptions="FillAndExpand" Title="Select Language">
+                        <Picker.Items>
+                            <x:String>English</x:String>
+                            <x:String>Gujarati</x:String>
+                            <x:String>Hindi</x:String>
+                            <x:String>Marathi</x:String>
+                            <x:String>Tamil</x:String>
+                            <x:String>Telugu</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                </ContentView>
+            </StackLayout>
+        </StackLayout>
+        <ScrollView Grid.Row="1">
+            <StackLayout Orientation="Vertical" Padding="10" Spacing="10">
+
+                <Editor x:Name="editor"  IsReadOnly="True"  Text="{Binding TextIdentified, Mode=TwoWay}" HorizontalOptions="FillAndExpand" Placeholder="Text of another person speak will be displayed after the start listning , please use start listning button once person start the conversation and stop when it finish the speaking." HeightRequest="200" MinimumHeightRequest="150" />
+
+                <StackLayout Orientation="Horizontal">
+
+                    <Button Text="Save" x:Name="btnsave" 
+                        Command="{Binding SaveDataToAzureTableCommand}"
+                        BackgroundColor="{StaticResource Accent}"
+                        TextColor="White"  HorizontalOptions="FillAndExpand"></Button>
+
+                    <Button Text="Clear" x:Name="btnclear" 
+                        Command="{Binding ClearTextCommand}"
+                        BackgroundColor="{StaticResource Accent}" 
+                        TextColor="White"  HorizontalOptions="FillAndExpand"></Button>
+
+                </StackLayout>
+                
+
+                <StackLayout Orientation="Horizontal"  VerticalOptions="CenterAndExpand" >
+                    <Button x:Name="btnstart" CornerRadius="20" IsEnabled="{Binding StartButtonEnabled}" Command="{Binding ListningStartCommand}" BackgroundColor="{StaticResource Primary}"
+                        TextColor="White"  Text="Start Listning"   HorizontalOptions="CenterAndExpand"></Button>
+                    <Button x:Name="btnstop" CornerRadius="20"  IsEnabled="{Binding StopButtonEnabled, Mode=TwoWay}" Command="{Binding EndListningCommand}"  BackgroundColor="{StaticResource Accent}"
+                        TextColor="White"   Text="Stop Listing" HorizontalOptions="CenterAndExpand" ></Button>
+                </StackLayout>
+
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+
+</ContentPage>
