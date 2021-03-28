@@ -76,8 +76,8 @@ namespace DeafHearingAID.ViewModels
             try
             {
                 List<AIDItem> hearingaidrecords = new List<AIDItem>();
-
-                CloudStorageAccount storageAccount = CloudStorageAccount.Parse("DefaultEndpointsProtocol=https;AccountName=deafaid;AccountKey=ch8fbsZmxgSbFGfLw5lGNXgGlRUBN+Actts2M09bIUgomisMHySQv7xuiVDbj5k//BwpVF7V6TMGniOkhFn17Q==;EndpointSuffix=core.windows.net");
+                //please enter correct values from azure portal
+                CloudStorageAccount storageAccount = CloudStorageAccount.Parse("***");
 
                 CloudTableClient tableClient = storageAccount.CreateCloudTableClient();
 
@@ -147,7 +147,7 @@ namespace DeafHearingAID.ViewModels
             if (item == null)
                 return;
 
-            // This will push the ItemDetailPage onto the navigation stack
+            
             await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.AudioText)}={item.AudioText}");
         }
     }

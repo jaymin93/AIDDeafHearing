@@ -18,21 +18,7 @@ namespace DeafHearingAID.ViewModels
            
         }
 
-        //public string ItemId
-        //{
-        //    get
-        //    {
-        //        return itemId;
-        //    }
-        //    set
-        //    {
-        //        itemId = value;
-        //        LoadItemId(value);
-        //    }
-        //}
-
         
-
         public string AudioText
         {
             get

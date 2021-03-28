@@ -115,7 +115,8 @@ namespace DeafHearingAID.ViewModels
 
                     if (config == null)
                     {
-                        config = SpeechConfig.FromSubscription("67c6d46689c947299cd10be67e63f6e0", "eastus");
+                        //please enter correct values from azure portal
+                        config = SpeechConfig.FromSubscription("***", "***");
                     }
 
                     config.SpeechRecognitionLanguage = GetUserSelectedLang(CurrentLang);
@@ -150,7 +151,7 @@ namespace DeafHearingAID.ViewModels
 
                         if (cancellation.Reason == CancellationReason.Error)
                         {
-                            // UpdateUI(textidentified);
+                            
                         }
 
                         stopRecognition.TrySetResult(0);
@@ -158,7 +159,7 @@ namespace DeafHearingAID.ViewModels
 
                     speechrecognizer.SessionStarted += (s, e) =>
                     {
-                        //Debug.WriteLine("\nSession started event.");
+                        
                     };
 
                     speechrecognizer.SessionStopped += (s, e) =>
@@ -176,7 +177,7 @@ namespace DeafHearingAID.ViewModels
             }
             catch (Exception ex)
             {
-                //UpdateUI("Exception: " + ex.ToString());
+                
             }
         }
 
@@ -233,7 +234,7 @@ namespace DeafHearingAID.ViewModels
             bool micAccessGranted = await DependencyService.Get<IMicrophoneService>().GetPermissionsAsync();
             if (!micAccessGranted)
             {
-                // UpdateUI("Please Provide access to Microphone");
+                
             }
 
             return micAccessGranted;

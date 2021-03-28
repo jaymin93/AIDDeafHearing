@@ -8,7 +8,7 @@
 
   <Identity
     Name="5aa1f1ed-0ec0-4ec4-aa9f-2e8b867a680d"
-    Publisher="CN=b0c9c4a3-c7cc-4059-af03-d1ba927665c6"
+    Publisher="CN=Jaymin"
     Version="1.0.0.0" />
 
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>

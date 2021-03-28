@@ -59,9 +59,9 @@
 
                 <StackLayout Orientation="Horizontal"  VerticalOptions="CenterAndExpand" >
                     <Button x:Name="btnstart" CornerRadius="20" IsEnabled="{Binding StartButtonEnabled}" Command="{Binding ListningStartCommand}" BackgroundColor="{StaticResource Primary}"
-                        TextColor="White"  Text="Start Listning"   HorizontalOptions="CenterAndExpand"></Button>
+                        TextColor="White"  Text="Start listening"   HorizontalOptions="CenterAndExpand"></Button>
                     <Button x:Name="btnstop" CornerRadius="20"  IsEnabled="{Binding StopButtonEnabled, Mode=TwoWay}" Command="{Binding EndListningCommand}"  BackgroundColor="{StaticResource Accent}"
-                        TextColor="White"   Text="Stop Listing" HorizontalOptions="CenterAndExpand" ></Button>
+                        TextColor="White"   Text="Stop listening" HorizontalOptions="CenterAndExpand" ></Button>
                 </StackLayout>
 
             </StackLayout>
